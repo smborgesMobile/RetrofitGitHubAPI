@@ -1,5 +1,6 @@
 package com.example.myapplication.acitivty
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,16 @@ class UserActivity : AppCompatActivity() {
         setContentView(R.layout.activity_user)
         val user_name = intent.getStringExtra("USER_NAME")
         loadData(user_name)
+
+        button_repository.setOnClickListener {
+            navigateToRepoView(user_name)
+        }
+    }
+
+    private fun navigateToRepoView(userName: String?) {
+        val intent = Intent(this, RepositoriesActivity::class.java)
+        intent.putExtra("USER_NAME", userName)
+        startActivity(intent)
     }
 
     fun loadData(userName: String) {
